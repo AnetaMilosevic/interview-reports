@@ -1,3 +1,11 @@
+import Footer from '../../components/footer';
+import Header from '../../components/header';
+
+
 export const Candidates = () => {
-    return <p>ovo radi</p>;
+    return (
+    <div>
+        <Header/>
+        <Footer/>
+    </div>)
 }
