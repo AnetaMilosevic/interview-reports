@@ -1,17 +1,16 @@
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate } from 'react-router-dom';
 
 function Header() {
     const location = useLocation();
     const navigate = useNavigate();
     const handleCandidateClickOnCandidateReports = ()=>{
-        if (location.pathname === "/CandidatesReports"){
+        if (location.pathname.includes("/CandidatesReports") ){
             navigate("/")
         }
     }
-    console.log (location)
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
