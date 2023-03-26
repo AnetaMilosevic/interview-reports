@@ -12,7 +12,7 @@ export const Candidates = () => {
         .then(data=>setCandidates(data))
     },[])
 
-    const allCandidates = candidates.map((candidat)=><CardCandidates candidat={candidat}/>)
+    const allCandidates = candidates.map((candidat)=><CardCandidates candidat={candidat} key={candidat.id}/>)
     
     return (
     <Container  style={{display:"flex",flexWrap:"wrap", gap:"10px", justifyContent:"center"}}>

@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path= "/" exact element={<Candidates/> } />
-        <Route path= "/CandidatesReports" exact element={<CandidatesReports/> } />
+        <Route path= "/CandidatesReports/:id"  element={<CandidatesReports/> } />
       </Routes>
       <Footer />
     </BrowserRouter>
