@@ -1,8 +1,9 @@
+import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { formatDate } from '../utils/format-date';
 
 function ReportTable(props) {
-    console.log (props.reports)
+    
   return (
     <Table striped bordered hover>
       <thead>
@@ -14,10 +15,10 @@ function ReportTable(props) {
       </thead>
       <tbody>
        { props.reports.map((report)=> 
-       {return  <tr> 
+       {return  <tr key={report.id} >  
         <td>{report.companyName}</td>
         <td>{formatDate(report.interviewDate)}</td>
-        <td>{report.status}</td>
+        <td style={{display:"flex", justifyContent:"space-between"}}>{report.status}  <Button onClick={()=>props.setModalData(report)} >O</Button>  </td>
                </tr> }
        )}
    

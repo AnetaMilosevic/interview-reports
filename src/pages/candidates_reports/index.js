@@ -2,11 +2,13 @@ import { useEffect,useState } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router";
 import { CandidateDetails } from "../../components/candidate_details";
+import MyModal from "../../components/modal";
 import  ReportTable  from "../../components/table";
 
 export const CandidatesReports = () => {
     const [candidate,setCandidate]= useState(null);
-    const[reports, setReports]= useState([])
+    const[reports, setReports]= useState([]);
+    const[modalData,setModalData]= useState(null);
     const params = useParams();
     useEffect(()=>{
         fetch(`http://localhost:3333/api/candidates/${params.id}`)
@@ -16,10 +18,15 @@ export const CandidatesReports = () => {
         .then(res=>res.json())
         .then(data=>setReports(data))
     },[])
-    
+   
     return (
     <Container>
         {candidate ?  <CandidateDetails candidate={candidate}/> : null}
-        <ReportTable reports={reports}/>
+        <ReportTable reports={reports} setModalData={setModalData} />
+        {modalData?
+         <MyModal modalData={modalData} show={ modalData ? true : false } onHide={ ()=> setModalData(null) } />
+    : null
+    }
+       
     </Container>)
 }
