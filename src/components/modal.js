@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
+import { formatDate } from '../utils/format-date';
 import { CandidateTexDetails } from './candidate_text_details';
 
 export default function MyModal(props) {
-    console.log(props.modalData)
+    
   return (
-    <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter">
+    <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter" style={{width:"75%"}}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {props.modalData.candidateName}
@@ -18,22 +18,18 @@ export default function MyModal(props) {
       <Modal.Body className="show-grid">
         <Container>
           <Row>
-            <Col xs={12} md={8}>
+            <Col xs={4} md={4}>
               <CandidateTexDetails title="Company:" content={props.modalData.companyName}/>
-              <CandidateTexDetails title="Interview date:" content={props.modalData.interviewDte}/>
+              <CandidateTexDetails title="Interview date:" content={formatDate(props.modalData.interviewDate)}/>
               <CandidateTexDetails title="Phase:" content={props.modalData.phase}/>
               <CandidateTexDetails title="Status:" content={props.modalData.status}/>
             </Col>
-            <Col xs={6} md={4}>
-            <CandidateTexDetails title="Note:" content={props.modalData.note}/>
+            <Col xs={8} md={8}>
+                <CandidateTexDetails title="Note:" content={props.modalData.note}/>
             </Col>
           </Row>
-         
         </Container>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 }
