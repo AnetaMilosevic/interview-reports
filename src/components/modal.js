@@ -9,7 +9,7 @@ import { CandidateTexDetails } from './candidate_text_details';
 export default function MyModal(props) {
     
   return (
-    <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter" style={{width:"75%"}}>
+    <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter" size="lg" centered style={{}}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {props.modalData.candidateName}
