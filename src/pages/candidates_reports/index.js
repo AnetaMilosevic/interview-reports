@@ -19,7 +19,7 @@ export const CandidatesReports = () => {
         .then(data=>setReports(data))
     },[])
    
-  return (
+  return ( 
     <Container>
         <Container style={{margin:"20px"}}>
             {candidate ?  <CandidateDetails candidate={candidate}/> : null}
