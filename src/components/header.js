@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import {useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Header() {
     const location = useLocation();
@@ -11,6 +11,7 @@ function Header() {
             navigate("/")
         }
     }
+    
   return (
     <Navbar bg="primary" variant="dark">
       <Container>

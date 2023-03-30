@@ -14,26 +14,24 @@ export const Candidates = () => {
         .then(res=>res.json())
         .then(data=>setCandidates(data))
     },[])
+
     const searchCandidates = candidates
-    .filter((candidat)=> candidat.name.toLowerCase().includes(searchValue.toLowerCase()))
-    .map((candidat)=><CardCandidates candidat={candidat} key={candidat.id}/>)
+      .filter((candidat)=> candidat.name.toLowerCase().includes(searchValue.toLowerCase()))
+      .map((candidat)=><CardCandidates candidat={candidat} key={candidat.id}/>)
     
     return (
-<div>
-  <Container style={{display:"flex", justifyContent:"space-between", padding:"20px", borderBottom:"1px solid lightgrey", margin:"20px"}}>
-    <h3>Candidates</h3>
-    <InputGroup className="mb-3" style={{maxWidth:"200px"}}>
-        <InputGroup.Text  id="basic-addon1">lupa</InputGroup.Text>
-        <Form.Control value = {searchValue} onChange={(e)=> setSearchValue(e.target.value)}
-          placeholder="Search"
-        />
-    </InputGroup>
-  </Container>
-    <Container  style={{display:"flex",flexWrap:"wrap", gap:"10px", justifyContent:"center"}}>
-     
-      
-      {searchCandidates}
+    <div>
+      <Container style={{display:"flex", justifyContent:"space-between", padding:"20px", borderBottom:"1px solid lightgrey", margin:"20px"}}>
+          <h3>Candidates</h3>
+          <InputGroup className="mb-3" style={{maxWidth:"200px"}}>
+            <InputGroup.Text  id="basic-addon1"><i className="fa fa-search" aria-hidden="true"></i></InputGroup.Text>
+            <Form.Control value = {searchValue} onChange={(e)=> setSearchValue(e.target.value)}
+            placeholder="Search"/>
+          </InputGroup>
+      </Container>
 
-    </Container>
-</div>
-)}
+      <Container  style={{display:"flex",flexWrap:"wrap", gap:"10px", justifyContent:"center"}}>
+        {searchCandidates}
+      </Container>
+    </div>
+  )}

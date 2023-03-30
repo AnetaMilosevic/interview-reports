@@ -6,6 +6,7 @@ function ReportTable(props) {
     
   return (
     <Table striped bordered hover>
+
       <thead>
         <tr>
           <th>Company</th>
@@ -13,19 +14,19 @@ function ReportTable(props) {
           <th>Status</th>
         </tr>
       </thead>
+
       <tbody>
-       { props.reports.map((report)=> 
-       {return  <tr key={report.id} >  
-        <td>{report.companyName}</td>
-        <td>{formatDate(report.interviewDate)}</td>
-        <td style={{display:"flex", justifyContent:"space-between"}}>{report.status}  <Button onClick={()=>props.setModalData(report)} >O</Button>  </td>
-               </tr> }
+       { props.reports.map((report)=> {
+          return  <tr key={report.id} >  
+                    <td>{report.companyName}</td>
+                    <td>{formatDate(report.interviewDate)}</td>
+                    <td style={{display:"flex", justifyContent:"space-between"}}>{report.status}  
+                    <Button onClick={()=>props.setModalData(report)} ><i className="fa fa-eye" aria-hidden="true"></i></Button>  </td>
+                  </tr> 
+          }
        )}
-   
       </tbody>
     </Table>
-  );
-  
+  ); 
 }
-
 export default ReportTable;
