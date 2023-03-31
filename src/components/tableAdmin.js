@@ -10,7 +10,7 @@ function AdminTable(props) {
 
       <tbody>
        { props.reports.map((report)=> {
-          return  <tr >  
+          return  <tr key={report.id} >  
                     <td><AdminTexDetails content={report.companyName} title={"Company"} /></td>
                     <td><AdminTexDetails content= {report.candidateName} title="Candidate"/></td>
                     <td><AdminTexDetails content={formatDate(report.interviewDate)} title={"Interview date"}/></td>

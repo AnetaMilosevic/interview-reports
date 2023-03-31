@@ -24,7 +24,7 @@ export const Candidates = () => {
       <Container style={{display:"flex", justifyContent:"space-between", padding:"20px", borderBottom:"1px solid lightgrey", margin:"20px"}}>
           <h3>Candidates</h3>
           <InputGroup className="mb-3" style={{maxWidth:"200px"}}>
-            <InputGroup.Text  id="basic-addon1"><i className="fa fa-search" aria-hidden="true"></i></InputGroup.Text>
+            <InputGroup.Text style={{backgroundcolor:"white"}} id="basic-addon1"><i className="fa fa-search" aria-hidden="true"></i></InputGroup.Text>
             <Form.Control value = {searchValue} onChange={(e)=> setSearchValue(e.target.value)}
             placeholder="Search"/>
           </InputGroup>
