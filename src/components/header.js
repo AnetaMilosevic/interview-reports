@@ -11,6 +11,14 @@ function Header() {
             navigate("/")
         }
     }
+    const adminButtons= ()=>{
+      if (location.pathname.includes("/AdminPanel")){
+        return <p>Dugmici</p>;
+      }
+      else{
+        return <Button onClick={handleCandidateClickOnCandidateReports}> Candidates</Button>;
+      }
+    }
     
   return (
     <Navbar bg="primary" variant="dark">
@@ -19,7 +27,7 @@ function Header() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            <Button onClick={handleCandidateClickOnCandidateReports}> Candidates</Button>
+            {adminButtons()}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
