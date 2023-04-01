@@ -4,31 +4,59 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function Header() {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const handleCandidateClickOnCandidateReports = ()=>{
-        if (location.pathname.includes("/CandidatesReports") ){
-            navigate("/")
-        }
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleCandidateClickOnCandidateReports = () => {
+    if (location.pathname.includes('/CandidatesReports')) {
+      navigate('/');
     }
-    const adminButtons= ()=>{
-      if (location.pathname.includes("/AdminPanel")){
-        return <p>Dugmici</p>;
-      }
-      else{
-        return <Button onClick={handleCandidateClickOnCandidateReports}> Candidates</Button>;
-      }
+  };
+  const handleReportClick = () => {
+    navigate('/AdminPanel');
+  };
+  const handleCreateReportPageClick = () => {
+    navigate('/submitReportPage');
+  };
+  const headerText = () => {
+    if (location.pathname.includes('/CandidatesReports')) {
+      return 'Interviews reports';
     }
-    
+    if (
+      location.pathname.includes('/AdminPanel') ||
+      location.pathname.includes('/submitReportPage')
+    ) {
+      return 'Reports Administration';
+    }
+  };
+  const adminButtons = () => {
+    if (
+      location.pathname.includes('/AdminPanel') ||
+      location.pathname.includes('/submitReportPage')
+    ) {
+      return (
+        <div>
+          <Button onClick={handleReportClick}>Reports</Button>
+          <Button onClick={handleCreateReportPageClick}>Create Report</Button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Button onClick={handleCandidateClickOnCandidateReports}>
+            Candidates
+          </Button>
+          <Button onClick={handleCreateReportPageClick}>Reports</Button>
+        </div>
+      );
+    }
+  };
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">Interviews reports</Navbar.Brand>
+        <Navbar.Brand href="#home">{headerText()}</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            {adminButtons()}
-          </Navbar.Text>
+          <Navbar.Text>{adminButtons()}</Navbar.Text>
         </Navbar.Collapse>
       </Container>
     </Navbar>
