@@ -42,16 +42,6 @@ export const AddReportUserSection = props => {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
         {searchCandidates}
       </div>
-
-      {/* <Container
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '10px',
-          justifyContent: 'center',
-        }}>
-        {searchCandidates}
-      </Container> */}
     </div>
   );
 };
