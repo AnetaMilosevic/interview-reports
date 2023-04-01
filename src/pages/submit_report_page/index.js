@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { AddReportUserSection } from '../../components/add_reports_user_section';
+import { AddReportCompanySection } from '../../components/add_reports_company_section';
 
 export const SubmitReportPage = () => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedStep, setSelectedStep] = useState('selectCandidate');
+
   console.log(selectedCandidate);
   const selectSection = () => {
     if (selectedStep === 'selectCandidate') {
@@ -15,16 +18,24 @@ export const SubmitReportPage = () => {
         />
       );
     }
-
+    else if(selectedStep === "selectCompany"){
+      return (
+      <AddReportCompanySection
+        selectedCompany={selectedCompany} 
+        setSelectedCompany ={setSelectedCompany}
+    />)}
     return null;
   };
   const handleNextClick = () => {
     if (selectedStep === 'selectCandidate') {
       setSelectedStep('selectCompany');
     }
+    if (selectedStep ==="selectCompany") {
+      setSelectedStep("reportInfo")
+    }
   };
   return (
-    <Container style={{ display: 'flex', height: '85vh', padding: '50px' }}>
+    <Container style={{ display: 'flex', minHeight: '85vh', padding: '50px' }}>
       <div
         style={{
           display: 'flex',
