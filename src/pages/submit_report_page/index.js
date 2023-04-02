@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { AddReportUserSection } from '../../components/add_reports_user_section';
 import { AddReportCompanySection } from '../../components/add_reports_company_section';
+import { AddReportInfo } from '../../components/add_report_info';
 
 export const SubmitReportPage = () => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
@@ -24,8 +25,13 @@ export const SubmitReportPage = () => {
         selectedCompany={selectedCompany} 
         setSelectedCompany ={setSelectedCompany}
     />)}
-    return null;
-  };
+    else if (selectedStep === "reportInfo"){
+    return (
+      <AddReportInfo
+      
+      />
+    )
+  }}
   const handleNextClick = () => {
     if (selectedStep === 'selectCandidate') {
       setSelectedStep('selectCompany');
