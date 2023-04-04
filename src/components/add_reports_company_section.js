@@ -9,7 +9,7 @@ export const AddReportCompanySection = props => {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    fetch("http://localhost:3333/api/companies")
+    fetch('http://localhost:3333/api/companies')
       .then(res => res.json())
       .then(data => setCompanies(data));
   }, []);
@@ -22,7 +22,7 @@ export const AddReportCompanySection = props => {
       <CompanyReportCard
         company={company}
         key={company.id}
-        selectedCompany ={props.selectedCompany}
+        selectedCompany={props.selectedCompany}
         setSelectedCompany={props.setSelectedCompany}
       />
     ));
@@ -39,19 +39,7 @@ export const AddReportCompanySection = props => {
           placeholder="Search"
         />
       </InputGroup>
-    <div style={{ display: 'flex', flexWrap: 'wrap'}}>
-        {searchCompanies}
-      </div>
-
-      {/* <Container
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '10px',
-          justifyContent: 'center',
-        }}>
-        {searchCandidates}
-      </Container> */}
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>{searchCompanies}</div>
     </div>
   );
 };

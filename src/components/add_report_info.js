@@ -1,13 +1,24 @@
 import { Form, InputGroup } from 'react-bootstrap';
 import SelectPhase from './select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { reportPhases } from '../utils/constants';
 
-export const AddReportInfo = () => {
+export const AddReportInfo = props => {
   const [date, setDate] = useState(new Date());
-  const [phase, setPhase] = useState('0');
-  const [status, setStatus] = useState('0');
+  const [phase, setPhase] = useState(reportPhases[0]);
+  const [status, setStatus] = useState('passed');
   const [note, setNote] = useState('');
-  console.log(status);
+
+  useEffect(() => {
+    props.setReportInfoData({
+      interviewDate: date,
+      phase: phase,
+      status: status,
+      note: note,
+    });
+  }, [date, phase, status, note]);
+  console.log(date, phase, status, note);
+
   return (
     <div>
       <div style={{ display: 'flex', width: '100%' }}>
@@ -25,20 +36,24 @@ export const AddReportInfo = () => {
         </div>
         <div>
           <Form.Label>Phases:</Form.Label>
-          <SelectPhase />
+          <Form.Select onChange={e => setPhase(e.target.value)}>
+            {reportPhases.map(phase => (
+              <option value={phase}>{phase}</option>
+            ))}
+          </Form.Select>
         </div>
         <div>
           <Form.Label>Status:</Form.Label>
           <Form.Select onChange={e => setStatus(e.target.value)}>
-            <option>Passed</option>
-            <option>Declined</option>
+            <option value="passed">Passed</option>
+            <option value="declined">Declined</option>
           </Form.Select>
         </div>
       </div>
       <Form.Label>Notes:</Form.Label>
       <Form.Control
-        value={''}
-        onChange={e => console.log(e.target.value)}
+        value={note}
+        onChange={e => setNote(e.target.value)}
         as="textarea"
       />
     </div>

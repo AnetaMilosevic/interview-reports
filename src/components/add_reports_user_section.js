@@ -15,9 +15,9 @@ export const AddReportUserSection = props => {
   }, []);
 
   const searchCandidates = candidates
-    .filter(candidate =>
-      candidate.name.toLowerCase().includes(searchValue.toLowerCase()),
-    )
+    //.filter(candidate =>
+    //  candidate.name.toLowerCase().includes(searchValue.toLowerCase()),
+    //)
     .map(candidate => (
       <CandidateReportCard
         candidate={candidate}

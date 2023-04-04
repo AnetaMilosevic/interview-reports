@@ -3,13 +3,15 @@ import { Button, Container } from 'react-bootstrap';
 import { AddReportUserSection } from '../../components/add_reports_user_section';
 import { AddReportCompanySection } from '../../components/add_reports_company_section';
 import { AddReportInfo } from '../../components/add_report_info';
+import { CandidateTexDetails } from '../../components/candidate_text_details';
 
 export const SubmitReportPage = () => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedStep, setSelectedStep] = useState('selectCandidate');
+  const [reportInfoData, setReportInfoData] = useState(null);
 
-  console.log(selectedCandidate);
+  console.log(reportInfoData);
   const selectSection = () => {
     if (selectedStep === 'selectCandidate') {
       return (
@@ -18,27 +20,40 @@ export const SubmitReportPage = () => {
           setSelectedCandidate={setSelectedCandidate}
         />
       );
-    }
-    else if(selectedStep === "selectCompany"){
+    } else if (selectedStep === 'selectCompany') {
       return (
-      <AddReportCompanySection
-        selectedCompany={selectedCompany} 
-        setSelectedCompany ={setSelectedCompany}
-    />)}
-    else if (selectedStep === "reportInfo"){
-    return (
-      <AddReportInfo
-      
-      />
-    )
-  }}
+        <AddReportCompanySection
+          selectedCompany={selectedCompany}
+          setSelectedCompany={setSelectedCompany}
+        />
+      );
+    } else if (selectedStep === 'reportInfo') {
+      return <AddReportInfo setReportInfoData={setReportInfoData} />;
+    }
+  };
   const handleNextClick = () => {
     if (selectedStep === 'selectCandidate') {
       setSelectedStep('selectCompany');
     }
-    if (selectedStep ==="selectCompany") {
-      setSelectedStep("reportInfo")
+    if (selectedStep === 'selectCompany') {
+      setSelectedStep('reportInfo');
     }
+    if (selectedStep === 'reportInfo') {
+      handleSubmitClick();
+    }
+  };
+  const handleBackClick = () => {};
+  const handleSubmitClick = () => {
+    fetch('http://localhost:3333/api/reports', {
+      method: 'POST',
+      body: {
+        candidateId: selectedCandidate.id,
+        candidateName: selectedCandidate.name,
+        companyId: selectedCompany.id,
+        companyName: selectedCompany.name,
+        ...reportInfoData,
+      },
+    });
   };
   return (
     <Container style={{ display: 'flex', minHeight: '85vh', padding: '50px' }}>
@@ -58,6 +73,23 @@ export const SubmitReportPage = () => {
         <p>
           <span>3</span> Fill Report Details
         </p>
+        <div>
+          {selectedStep !== 'selectCandidate' ? (
+            <div style={{ borderTop: '2px solid black' }}>
+              <CandidateTexDetails
+                title="Candidate:"
+                content={selectedCandidate.name}
+              />
+            </div>
+          ) : null}
+          {selectedStep !== 'selectCompany' &&
+          selectedStep !== 'selectCandidate' ? (
+            <CandidateTexDetails
+              title="Company:"
+              content={selectedCompany.name}
+            />
+          ) : null}
+        </div>
       </div>
       <div
         style={{
@@ -67,6 +99,11 @@ export const SubmitReportPage = () => {
           padding: '15px',
         }}>
         <div style={{ display: 'flex' }}>{selectSection()}</div>
+        <Button
+          style={{ marginTop: '15px', alignSelf: 'flex-start' }}
+          onClick={handleBackClick}>
+          Back
+        </Button>
         <Button
           style={{ marginTop: '15px', alignSelf: 'flex-end' }}
           onClick={handleNextClick}>

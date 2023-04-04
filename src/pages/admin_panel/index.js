@@ -16,9 +16,9 @@ export const AdminPanel = () => {
       .then(data => setReports(data));
   }, []);
   const searchResult = reports.filter(
-    report =>
-      report.candidateName.toLowerCase().includes(searchValue.toLowerCase()) ||
-      report.companyName.toLowerCase().includes(searchValue.toLowerCase()),
+    report => report,
+    // report.candidateName.toLowerCase().includes(searchValue.toLowerCase()) ||
+    //  report.companyName.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   return (

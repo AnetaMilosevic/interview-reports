@@ -1,4 +1,1 @@
- 
-
-
- export const reportPhases= ["tech", "cv", "hr", "passed", "final"];
+export const reportPhases = ['tech', 'cv', 'hr', 'final'];
