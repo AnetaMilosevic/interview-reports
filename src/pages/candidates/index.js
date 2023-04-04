@@ -12,17 +12,6 @@ export const Candidates = () => {
     fetch('http://localhost:3333/api/candidates')
       .then(res => res.json())
       .then(data => setCandidates(data));
-
-    fetch('http://localhost:3333/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: 'dev@dev.com',
-        password: 'developer',
-      }),
-    })
-      .then(res => res.json())
-      .then(res => localStorage.setItem('accessToken', res.accessToken));
   }, []);
 
   const searchCandidates = candidates

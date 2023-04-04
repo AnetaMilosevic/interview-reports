@@ -5,18 +5,20 @@ import { AdminTexDetails } from './tableAdminText';
 
 function AdminTable(props) {
   const handleDelete = report => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      fetch(`http://localhost:3333/api/reports/${report.id}`, {
-        method: 'DELETE',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify(report),
-      }).then();
-    }
+    fetch(`http://localhost:3333/api/reports/${report.id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(() => {
+        const filteredReports = props.reports.filter(
+          elem => elem.id !== report.id,
+        );
+        props.setReports(filteredReports);
+      });
   };
   return (
     <Table striped bordered hover>

@@ -43,7 +43,11 @@ export const AdminPanel = () => {
         </InputGroup>
       </Container>
       <Container>
-        <AdminTable reports={searchResult} setModalData={setModalData} />
+        <AdminTable
+          reports={searchResult}
+          setModalData={setModalData}
+          setReports={setReports}
+        />
       </Container>
       <Container>
         {modalData ? (
