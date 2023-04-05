@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card';
 
 function CompanyReportCard(props) {
-  console.log(props);
   return (
     <Card
       onClick={() => props.setSelectedCompany(props.company)}
