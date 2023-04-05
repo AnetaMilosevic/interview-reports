@@ -25,21 +25,25 @@ export const AdminPanel = () => {
     <div>
       <Container
         style={{
-          padding: '20px',
+          display: 'flex',
+          justifyContent: 'space-between',
           borderBottom: '1px solid lightgrey',
-          margin: '20px',
+          marginTop: 20,
+          marginBottom: 20,
+          paddingBottom: 20,
         }}>
-        <InputGroup className="mb-3" style={{ maxWidth: '200px' }}>
+        <></>
+        <InputGroup style={{ maxWidth: '200px' }}>
           <InputGroup.Text
             style={{ backgroundColor: 'white' }}
             id="basic-addon1">
             <i className="fa fa-search" aria-hidden="true"></i>
-            <Form.Control
-              value={searchValue}
-              onChange={e => setSearchValue(e.target.value)}
-              placeholder="Search"
-            />
           </InputGroup.Text>
+          <Form.Control
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+            placeholder="Search"
+          />
         </InputGroup>
       </Container>
       <Container>

@@ -27,9 +27,8 @@ export const Candidates = () => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '20px',
           borderBottom: '1px solid lightgrey',
-          margin: '20px',
+          margin: 20,
         }}>
         <h3>Candidates</h3>
         <InputGroup className="mb-3" style={{ maxWidth: '200px' }}>

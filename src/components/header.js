@@ -18,14 +18,17 @@ function Header() {
     navigate('/submitReportPage');
   };
   const headerText = () => {
-    if (location.pathname.includes('/CandidatesReports')) {
-      return 'Interviews reports';
-    }
     if (
       location.pathname.includes('/AdminPanel') ||
       location.pathname.includes('/submitReportPage')
     ) {
       return 'Reports Administration';
+    }
+    if (
+      location.pathname.includes('/CandidatesReports') ||
+      location.pathname.includes('/')
+    ) {
+      return 'Interviews reports';
     }
   };
   const adminButtons = () => {
@@ -53,7 +56,9 @@ function Header() {
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">{headerText()}</Navbar.Brand>
+        <Navbar.Brand onClick={() => navigate('/')}>
+          {headerText()}
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>{adminButtons()}</Navbar.Text>

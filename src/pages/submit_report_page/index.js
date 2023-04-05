@@ -67,13 +67,22 @@ export const SubmitReportPage = () => {
           flex: 2,
           borderRight: '1px solid black',
         }}>
-        <p>
+        <p
+          style={{
+            fontWeight: selectedStep === 'selectCandidate' ? 'bold' : 'normal',
+          }}>
           <span>1</span> Select Candidate
         </p>
-        <p>
+        <p
+          style={{
+            fontWeight: selectedStep === 'selectCompany' ? 'bold' : 'normal',
+          }}>
           <span>2</span> Select Company
         </p>
-        <p>
+        <p
+          style={{
+            fontWeight: selectedStep === 'reportInfo' ? 'bold' : 'normal',
+          }}>
           <span>3</span> Fill Report Details
         </p>
         <div>
@@ -102,16 +111,15 @@ export const SubmitReportPage = () => {
           padding: '15px',
         }}>
         <div style={{ display: 'flex' }}>{selectSection()}</div>
-        <Button
-          style={{ marginTop: '15px', alignSelf: 'flex-start' }}
-          onClick={handleBackClick}>
-          Back
-        </Button>
-        <Button
-          style={{ marginTop: '15px', alignSelf: 'flex-end' }}
-          onClick={handleNextClick}>
-          Next
-        </Button>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginTop: 15,
+          }}>
+          <Button onClick={handleBackClick}>Back</Button>
+          <Button onClick={handleNextClick}>Next</Button>
+        </div>
       </div>
     </Container>
   );
