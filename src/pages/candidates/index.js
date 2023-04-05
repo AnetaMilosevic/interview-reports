@@ -3,15 +3,16 @@ import CardCandidates from '../../components/card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import axios from 'axios';
 
 export const Candidates = () => {
   const [candidates, setCandidates] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3333/api/candidates')
-      .then(res => res.json())
-      .then(data => setCandidates(data));
+    axios
+      .get('http://localhost:3333/api/candidates')
+      .then(data => setCandidates(data.data));
   }, []);
 
   const searchCandidates = candidates
@@ -26,9 +27,8 @@ export const Candidates = () => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '20px',
           borderBottom: '1px solid lightgrey',
-          margin: '20px',
+          margin: 20,
         }}>
         <h3>Candidates</h3>
         <InputGroup className="mb-3" style={{ maxWidth: '200px' }}>
