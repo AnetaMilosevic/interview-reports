@@ -1,5 +1,4 @@
-import { Form, InputGroup } from 'react-bootstrap';
-import SelectPhase from './select';
+import { Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { reportPhases } from '../utils/constants';
 
@@ -17,7 +16,6 @@ export const AddReportInfo = props => {
       note: note,
     });
   }, [date, phase, status, note]);
-  console.log(date, phase, status, note);
 
   return (
     <div>

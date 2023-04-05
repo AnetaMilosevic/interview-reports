@@ -5,13 +5,16 @@ import { AddReportCompanySection } from '../../components/add_reports_company_se
 import { AddReportInfo } from '../../components/add_report_info';
 import { CandidateTexDetails } from '../../components/candidate_text_details';
 
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 export const SubmitReportPage = () => {
+  const navigate = useNavigate();
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedStep, setSelectedStep] = useState('selectCandidate');
   const [reportInfoData, setReportInfoData] = useState(null);
 
-  console.log(reportInfoData);
   const selectSection = () => {
     if (selectedStep === 'selectCandidate') {
       return (
@@ -42,18 +45,18 @@ export const SubmitReportPage = () => {
       handleSubmitClick();
     }
   };
+
   const handleBackClick = () => {};
   const handleSubmitClick = () => {
-    fetch('http://localhost:3333/api/reports', {
-      method: 'POST',
-      body: {
+    axios
+      .post('http://localhost:3333/api/reports', {
         candidateId: selectedCandidate.id,
         candidateName: selectedCandidate.name,
         companyId: selectedCompany.id,
         companyName: selectedCompany.name,
         ...reportInfoData,
-      },
-    });
+      })
+      .then(res => navigate('/AdminPanel'));
   };
   return (
     <Container style={{ display: 'flex', minHeight: '85vh', padding: '50px' }}>

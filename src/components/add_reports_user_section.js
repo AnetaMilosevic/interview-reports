@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import CandidateReportCard from './candidateReportCard';
@@ -15,9 +14,9 @@ export const AddReportUserSection = props => {
   }, []);
 
   const searchCandidates = candidates
-    //.filter(candidate =>
-    //  candidate.name.toLowerCase().includes(searchValue.toLowerCase()),
-    //)
+    .filter(candidate =>
+      candidate.name.toLowerCase().includes(searchValue.toLowerCase()),
+    )
     .map(candidate => (
       <CandidateReportCard
         candidate={candidate}

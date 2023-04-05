@@ -47,14 +47,12 @@ function AdminTable(props) {
               <td style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <AdminTexDetails content={report.status} title={'Status'} />
                 <Button onClick={() => props.setModalData(report)}>
-                  <i className="fa fa-eye" aria-hidden="true"></i>
+                  <i className="fa fa-eye"></i>
                 </Button>
               </td>
               <td>
                 <Button onClick={() => handleDelete(report)}>
-                  <i className="fa fa-cancel" aria-hidden="true">
-                    X
-                  </i>
+                  <i className="fa fa-times fa-2x"></i>
                 </Button>
               </td>
             </tr>
