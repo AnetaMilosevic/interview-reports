@@ -4,9 +4,8 @@ import { AddReportUserSection } from '../../components/add_reports_user_section'
 import { AddReportCompanySection } from '../../components/add_reports_company_section';
 import { AddReportInfo } from '../../components/add_report_info';
 import { CandidateTexDetails } from '../../components/candidate_text_details';
-
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { postReport } from '../../services/reportService';
 
 export const SubmitReportPage = () => {
   const navigate = useNavigate();
@@ -56,15 +55,14 @@ export const SubmitReportPage = () => {
   };
 
   const handleSubmitClick = () => {
-    axios
-      .post('http://localhost:3333/api/reports', {
-        candidateId: selectedCandidate.id,
-        candidateName: selectedCandidate.name,
-        companyId: selectedCompany.id,
-        companyName: selectedCompany.name,
-        ...reportInfoData,
-      })
-      .then(res => navigate('/AdminPanel'));
+    const body = {
+      candidateId: selectedCandidate.id,
+      candidateName: selectedCandidate.name,
+      companyId: selectedCompany.id,
+      companyName: selectedCompany.name,
+      ...reportInfoData,
+    };
+    postReport(body).then(() => navigate('/AdminPanel'));
   };
   return (
     <Container style={{ display: 'flex', minHeight: '85vh', padding: '50px' }}>

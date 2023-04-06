@@ -6,12 +6,12 @@ function CardCandidates(props) {
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/CandidatesReports/${props.candidat.id}`)}
+      onClick={() => navigate(`/CandidatesReports/${props.candidate.id}`)}
       style={{ width: '30%', border: '2px solid grey' }}>
       <Card className="card">
         <Card.Img
           variant="top"
-          src={props.candidat.avatar}
+          src={props.candidate.avatar}
           alt="Avatar"
           style={{
             width: '75%',
@@ -21,8 +21,8 @@ function CardCandidates(props) {
           }}
         />
         <Card.Body>
-          <Card.Title>{props.candidat.name}</Card.Title>
-          <Card.Text>{props.candidat.email}</Card.Text>
+          <Card.Title>{props.candidate.name}</Card.Title>
+          <Card.Text>{props.candidate.email}</Card.Text>
         </Card.Body>
       </Card>
     </div>

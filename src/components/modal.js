@@ -7,9 +7,14 @@ import { formatDate } from '../utils/format-date';
 import { CandidateTexDetails } from './candidate_text_details';
 
 export default function MyModal(props) {
-    
   return (
-    <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter" size="lg" centered style={{}}>
+    <Modal
+      show={props.show}
+      onHide={props.onHide}
+      aria-labelledby="contained-modal-title-vcenter"
+      size="lg"
+      centered
+      style={{}}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {props.modalData.candidateName}
@@ -19,13 +24,28 @@ export default function MyModal(props) {
         <Container>
           <Row>
             <Col xs={4} md={4}>
-              <CandidateTexDetails title="Company:" content={props.modalData.companyName}/>
-              <CandidateTexDetails title="Interview date:" content={formatDate(props.modalData.interviewDate)}/>
-              <CandidateTexDetails title="Phase:" content={props.modalData.phase}/>
-              <CandidateTexDetails title="Status:" content={props.modalData.status}/>
+              <CandidateTexDetails
+                title="Company:"
+                content={props.modalData.companyName}
+              />
+              <CandidateTexDetails
+                title="Interview date:"
+                content={formatDate(props.modalData.interviewDate)}
+              />
+              <CandidateTexDetails
+                title="Phase:"
+                content={props.modalData.phase}
+              />
+              <CandidateTexDetails
+                title="Status:"
+                content={props.modalData.status}
+              />
             </Col>
             <Col xs={8} md={8}>
-                <CandidateTexDetails title="Note:" content={props.modalData.note}/>
+              <CandidateTexDetails
+                title="Note:"
+                content={props.modalData.note}
+              />
             </Col>
           </Row>
         </Container>
