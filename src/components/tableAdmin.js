@@ -52,7 +52,7 @@ function AdminTable(props) {
               </td>
               <td>
                 <Button onClick={() => handleDelete(report)}>
-                  <i className="fa fa-times fa-2x"></i>
+                  <i className="fa fa-times" style={{ fontSize: '20px' }}></i>
                 </Button>
               </td>
             </tr>

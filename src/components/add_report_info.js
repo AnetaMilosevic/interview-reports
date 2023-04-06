@@ -18,34 +18,50 @@ export const AddReportInfo = props => {
   }, [date, phase, status, note]);
 
   return (
-    <div>
-      <div style={{ display: 'flex', width: '100%' }}>
-        <div style={{ width: '30%' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+        justifyContent: 'center',
+      }}>
+      <div style={{ display: 'flex', flex: 1 }}>
+        <div style={{ display: 'flex', flex: 1 }}>
           <Form.Group controlId="dob">
             <Form.Label>Interview Date:</Form.Label>
             <Form.Control
               type="date"
               value={date}
               onChange={e => {
-                setDate(e.target.value);
+                if (new Date(e.target.value) > new Date()) {
+                  alert('Invalid date');
+                } else {
+                  setDate(e.target.value);
+                }
               }}
             />
           </Form.Group>
         </div>
-        <div>
-          <Form.Label>Phases:</Form.Label>
-          <Form.Select onChange={e => setPhase(e.target.value)}>
-            {reportPhases.map(phase => (
-              <option value={phase}>{phase}</option>
-            ))}
-          </Form.Select>
+        <div style={{ display: 'flex', flex: 1 }}>
+          <div style={{ width: '90%' }}>
+            <Form.Label>Phases:</Form.Label>
+            <Form.Select onChange={e => setPhase(e.target.value)}>
+              {reportPhases.map((phase, i) => (
+                <option key={i} value={phase}>
+                  {phase}
+                </option>
+              ))}
+            </Form.Select>
+          </div>
         </div>
-        <div>
-          <Form.Label>Status:</Form.Label>
-          <Form.Select onChange={e => setStatus(e.target.value)}>
-            <option value="passed">Passed</option>
-            <option value="declined">Declined</option>
-          </Form.Select>
+        <div style={{ display: 'flex', flex: 1, marginBottom: 20 }}>
+          <div style={{ width: '100%' }}>
+            <Form.Label>Status:</Form.Label>
+            <Form.Select onChange={e => setStatus(e.target.value)}>
+              <option value="passed">Passed</option>
+              <option value="declined">Declined</option>
+            </Form.Select>
+          </div>
         </div>
       </div>
       <Form.Label>Notes:</Form.Label>

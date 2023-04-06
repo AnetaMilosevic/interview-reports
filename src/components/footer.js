@@ -5,7 +5,7 @@ function Footer() {
     <Navbar
       bg="primary"
       variant="dark"
-      fixedbottom="true"
+      fixed="bottom"
       style={{ width: '100%', height: '50px', marginTop: 15 }}></Navbar>
   );
 }
