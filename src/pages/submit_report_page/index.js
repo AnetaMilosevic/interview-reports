@@ -4,9 +4,8 @@ import { AddReportUserSection } from '../../components/add_reports_user_section'
 import { AddReportCompanySection } from '../../components/add_reports_company_section';
 import { AddReportInfo } from '../../components/add_report_info';
 import { CandidateTexDetails } from '../../components/candidate_text_details';
-
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { postReport } from '../../services/reportService';
 
 export const SubmitReportPage = () => {
   const navigate = useNavigate();
@@ -35,10 +34,10 @@ export const SubmitReportPage = () => {
     }
   };
   const handleNextClick = () => {
-    if (selectedStep === 'selectCandidate') {
+    if (selectedStep === 'selectCandidate' && selectedCandidate) {
       setSelectedStep('selectCompany');
     }
-    if (selectedStep === 'selectCompany') {
+    if (selectedStep === 'selectCompany' && selectedCompany) {
       setSelectedStep('reportInfo');
     }
     if (selectedStep === 'reportInfo') {
@@ -46,17 +45,24 @@ export const SubmitReportPage = () => {
     }
   };
 
-  const handleBackClick = () => {};
+  const handleBackClick = () => {
+    if (selectedStep === 'selectCompany') {
+      setSelectedStep('selectCandidate');
+    }
+    if (selectedStep === 'reportInfo') {
+      setSelectedStep('selectCompany');
+    }
+  };
+
   const handleSubmitClick = () => {
-    axios
-      .post('http://localhost:3333/api/reports', {
-        candidateId: selectedCandidate.id,
-        candidateName: selectedCandidate.name,
-        companyId: selectedCompany.id,
-        companyName: selectedCompany.name,
-        ...reportInfoData,
-      })
-      .then(res => navigate('/AdminPanel'));
+    const body = {
+      candidateId: selectedCandidate.id,
+      candidateName: selectedCandidate.name,
+      companyId: selectedCompany.id,
+      companyName: selectedCompany.name,
+      ...reportInfoData,
+    };
+    postReport(body).then(() => navigate('/AdminPanel'));
   };
   return (
     <Container style={{ display: 'flex', minHeight: '85vh', padding: '50px' }}>
@@ -70,24 +76,32 @@ export const SubmitReportPage = () => {
         <p
           style={{
             fontWeight: selectedStep === 'selectCandidate' ? 'bold' : 'normal',
+            fontSize: '20px',
           }}>
           <span>1</span> Select Candidate
         </p>
         <p
           style={{
             fontWeight: selectedStep === 'selectCompany' ? 'bold' : 'normal',
+            fontSize: '20px',
           }}>
           <span>2</span> Select Company
         </p>
         <p
           style={{
             fontWeight: selectedStep === 'reportInfo' ? 'bold' : 'normal',
+            fontSize: '20px',
           }}>
           <span>3</span> Fill Report Details
         </p>
         <div>
           {selectedStep !== 'selectCandidate' ? (
-            <div style={{ borderTop: '2px solid black' }}>
+            <div
+              style={{
+                borderTop: '1px solid black',
+                paddingTop: 20,
+                marginRight: 30,
+              }}>
               <CandidateTexDetails
                 title="Candidate:"
                 content={selectedCandidate.name}
@@ -114,11 +128,18 @@ export const SubmitReportPage = () => {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent:
+              selectedStep === 'selectCompany' || selectedStep === 'reportInfo'
+                ? 'space-between'
+                : 'flex-end',
             marginTop: 15,
           }}>
-          <Button onClick={handleBackClick}>Back</Button>
-          <Button onClick={handleNextClick}>Next</Button>
+          {selectedStep === 'selectCompany' || selectedStep === 'reportInfo' ? (
+            <Button onClick={handleBackClick}>Back</Button>
+          ) : null}
+          <Button onClick={handleNextClick}>
+            {selectedStep === 'reportInfo' ? 'Submit' : 'Next'}
+          </Button>
         </div>
       </div>
     </Container>

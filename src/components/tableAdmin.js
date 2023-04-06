@@ -1,24 +1,17 @@
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
+import { deleteReportById } from '../services/reportService';
 import { formatDate } from '../utils/format-date';
 import { AdminTexDetails } from './tableAdminText';
 
 function AdminTable(props) {
   const handleDelete = report => {
-    fetch(`http://localhost:3333/api/reports/${report.id}`, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(() => {
-        const filteredReports = props.reports.filter(
-          elem => elem.id !== report.id,
-        );
-        props.setReports(filteredReports);
-      });
+    deleteReportById(report.id).then(() => {
+      const filteredReports = props.reports.filter(
+        elem => elem.id !== report.id,
+      );
+      props.setReports(filteredReports);
+    });
   };
   return (
     <Table striped bordered hover>
@@ -52,7 +45,7 @@ function AdminTable(props) {
               </td>
               <td>
                 <Button onClick={() => handleDelete(report)}>
-                  <i className="fa fa-times fa-2x"></i>
+                  <i className="fa fa-times" style={{ fontSize: '20px' }}></i>
                 </Button>
               </td>
             </tr>

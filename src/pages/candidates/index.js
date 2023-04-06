@@ -3,23 +3,23 @@ import CardCandidates from '../../components/card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import axios from 'axios';
+import { getCandidates } from '../../services/candidateService';
 
 export const Candidates = () => {
   const [candidates, setCandidates] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3333/api/candidates')
-      .then(data => setCandidates(data.data));
+    getCandidates().then(data => setCandidates(data.data));
   }, []);
 
   const searchCandidates = candidates
-    .filter(candidat =>
-      candidat.name.toLowerCase().includes(searchValue.toLowerCase()),
+    .filter(candidate =>
+      candidate.name.toLowerCase().includes(searchValue.toLowerCase()),
     )
-    .map(candidat => <CardCandidates candidat={candidat} key={candidat.id} />);
+    .map(candidate => (
+      <CardCandidates candidate={candidate} key={candidate.id} />
+    ));
 
   return (
     <div>

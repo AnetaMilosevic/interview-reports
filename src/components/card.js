@@ -1,15 +1,17 @@
 import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import './index.css';
 
 function CardCandidates(props) {
+  const navigate = useNavigate();
   return (
-    <Link
-      to={`/CandidatesReports/${props.candidat.id}`}
+    <div
+      onClick={() => navigate(`/CandidatesReports/${props.candidate.id}`)}
       style={{ width: '30%', border: '2px solid grey' }}>
-      <Card>
+      <Card className="card">
         <Card.Img
           variant="top"
-          src={props.candidat.avatar}
+          src={props.candidate.avatar}
           alt="Avatar"
           style={{
             width: '75%',
@@ -19,11 +21,11 @@ function CardCandidates(props) {
           }}
         />
         <Card.Body>
-          <Card.Title>{props.candidat.name}</Card.Title>
-          <Card.Text>{props.candidat.email}</Card.Text>
+          <Card.Title>{props.candidate.name}</Card.Title>
+          <Card.Text>{props.candidate.email}</Card.Text>
         </Card.Body>
       </Card>
-    </Link>
+    </div>
   );
 }
 

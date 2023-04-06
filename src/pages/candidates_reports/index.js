@@ -4,6 +4,8 @@ import { useParams } from 'react-router';
 import { CandidateDetails } from '../../components/candidate_details';
 import MyModal from '../../components/modal';
 import ReportTable from '../../components/table';
+import { getCandidateById } from '../../services/candidateService';
+import { getReportById } from '../../services/reportService';
 
 export const CandidatesReports = () => {
   const [candidate, setCandidate] = useState(null);
@@ -11,12 +13,8 @@ export const CandidatesReports = () => {
   const [modalData, setModalData] = useState(null);
   const params = useParams();
   useEffect(() => {
-    fetch(`http://localhost:3333/api/candidates/${params.id}`)
-      .then(res => res.json())
-      .then(data => setCandidate(data));
-    fetch(`http://localhost:3333/api/reports?candidateId=${params.id}`)
-      .then(res => res.json())
-      .then(data => setReports(data));
+    getCandidateById(params.id).then(data => setCandidate(data.data));
+    getReportById(params.id).then(data => setReports(data.data));
   }, []);
 
   return (

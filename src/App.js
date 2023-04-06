@@ -11,12 +11,17 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" exact element={<Candidates />} />
-        <Route path="/CandidatesReports/:id" element={<CandidatesReports />} />
-        <Route path="/AdminPanel" element={<AdminPanel />} />
-        <Route path="/submitReportPage" element={<SubmitReportPage />} />
-      </Routes>
+      <div style={{ marginBottom: 70 }}>
+        <Routes>
+          <Route path="/" exact element={<Candidates />} />
+          <Route
+            path="/CandidatesReports/:id"
+            element={<CandidatesReports />}
+          />
+          <Route path="/AdminPanel" element={<AdminPanel />} />
+          <Route path="/submitReportPage" element={<SubmitReportPage />} />
+        </Routes>
+      </div>
       <Footer />
     </BrowserRouter>
   );

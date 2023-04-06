@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { getCandidates } from '../services/candidateService';
 import CandidateReportCard from './candidateReportCard';
 
 export const AddReportUserSection = props => {
@@ -8,9 +9,7 @@ export const AddReportUserSection = props => {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3333/api/candidates')
-      .then(res => res.json())
-      .then(data => setCandidates(data));
+    getCandidates().then(data => setCandidates(data.data));
   }, []);
 
   const searchCandidates = candidates

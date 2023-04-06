@@ -4,6 +4,7 @@ import AdminTable from '../../components/tableAdmin';
 import MyModal from '../../components/modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { getReports } from '../../services/reportService';
 
 export const AdminPanel = () => {
   const [reports, setReports] = useState([]);
@@ -11,10 +12,9 @@ export const AdminPanel = () => {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3333/api/reports')
-      .then(res => res.json())
-      .then(data => setReports(data));
+    getReports().then(data => setReports(data.data));
   }, []);
+
   const searchResult = reports.filter(
     report =>
       report.candidateName.toLowerCase().includes(searchValue.toLowerCase()) ||
